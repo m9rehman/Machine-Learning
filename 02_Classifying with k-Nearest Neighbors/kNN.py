@@ -16,7 +16,7 @@ def classifyKNN(testpoint, dataSet, labels, k):
 	#Then calculate the difference
 	diffMatrix = tile(testpoint,(dataSetSize,1)) - dataSet
 	#Calculating Euclidean Distance
-	squareDiffMatrix = diffMat ** 2
+	squareDiffMatrix = diffMatrix ** 2
 	squareDistances = squareDiffMatrix.sum(axis=1)
 	distances = squareDistances**0.5
 	sortedDistancesIndices = distances.argsort() #Returns indices that would sort array
@@ -29,7 +29,7 @@ def classifyKNN(testpoint, dataSet, labels, k):
 		classCount[voteILabel] = classCount.get(voteILabel,0) + 1
 
 	#Sorting our dictionary based on count
-	sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(1),reverse=True)
+	sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)
 	return sortedClassCount[0][0]
 
 
