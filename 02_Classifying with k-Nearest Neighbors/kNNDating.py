@@ -1,5 +1,7 @@
 from numpy import *
 import operator
+import matplotlib
+import matplotlib.pyplot as plt
 
 def createDataSet():
 	group = array([[1.0,1.1], [1.0,1.0], [0,0], [0,0.1]])
@@ -42,3 +44,10 @@ def fileToMatrix(filename):
 		classLabelVector.append(listFromLine[-1])
 		index+=1
 	return returnMatrix,classLabelVector
+
+def createScatterplot(filename):
+	datingMatrix, datingLabels = fileToMatrix(filename)
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	ax.scatter(datingMatrix[:,1], datingMatrix[:,2])
+	plt.show()
