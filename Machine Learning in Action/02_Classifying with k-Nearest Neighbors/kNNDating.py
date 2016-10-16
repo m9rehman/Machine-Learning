@@ -2,6 +2,7 @@ from numpy import *
 import operator
 import matplotlib
 import matplotlib.pyplot as plt
+from numpy import array
 
 def createDataSet():
 	group = array([[1.0,1.1], [1.0,1.0], [0,0], [0,0.1]])
@@ -46,8 +47,22 @@ def fileToMatrix(filename):
 	return returnMatrix,classLabelVector
 
 def createScatterplot(filename):
-	datingMatrix, datingLabels = fileToMatrix(filename)
+	datingMatrix, datingLabels = fileToMatrix(filename) 
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
 	ax.scatter(datingMatrix[:,1], datingMatrix[:,2])
 	plt.show()
+
+
+def autoNorm(dataSet):
+	minVals = dataSet.min(0) # 0 Allows you take min from columns
+	maxVals = dataSet.max(0)
+	ranges = maxVals - minVals
+	normalizedDataSet = zeros(shape(dataSet))
+	m = dataSet.shape[0] #row
+	#First subtract by min
+	normalizedDataSet = dataSet - tile(minVals,(m,1))
+	normalizedDataSet = normalizedDataSet/tile(ranges,(m,1))
+	return normalizedDataSet,ranges,minVals
+
+
