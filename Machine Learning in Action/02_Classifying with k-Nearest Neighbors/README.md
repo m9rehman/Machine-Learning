@@ -1,6 +1,6 @@
-To run :\n
-\t	$ python3 \n
-\t	$ import kNNDating \n
-\t	$ kNNDating.classifyPerson() \n\n
+To run :<br/>
+&nbsp &nbsp	$ python3 <br/>
+&nbsp &nbsp	$ import kNNDating <br/>
+&nbsp &nbsp	$ kNNDating.classifyPerson() <br/><br/>
 
 Then input values for questions to determine if you are a good match.
