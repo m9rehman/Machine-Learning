@@ -65,4 +65,22 @@ def autoNorm(dataSet):
 	normalizedDataSet = normalizedDataSet/tile(ranges,(m,1))
 	return normalizedDataSet,ranges,minVals
 
+def datingClasstest():
+	ratio = 0.1
+	datingMatrix,datingLabels = fileToMatrix('datingTestSet.txt')
+	normMatrix,ranges,minVals = autoNorm(datingMatrix)
+	m = normMatrix.shape[0]
+	numOfTestVecs = int(ratio*m)
+	errorCount = 0
+	#Fitting our classifier in our test set
+	for i in range(numOfTestVecs):
+		#our training data is normMatrix[numOfTestVecs:m,:] -> We are excluding the test rows from normMatrix
+		classifierResult = classifyKNN(normMatrix[i,:], normMatrix[numOfTestVecs:m,:], 
+			datingLabels[numOfTestVecs:m],3)
+		print(classifierResult, datingLabels[i])
+		if (classifierResult != datingLabels[i]): errorCount += 1.0
+	print("the total error rate is: %f" % (errorCount/float(numOfTestVecs)))
+
+
+
 
