@@ -81,6 +81,23 @@ def datingClasstest():
 		if (classifierResult != datingLabels[i]): errorCount += 1.0
 	print("the total error rate is: %f" % (errorCount/float(numOfTestVecs)))
 
+#Our full-fledged dating application
+def classifyPerson():
+	personTypeList = ['not at all', 'small doses', 'large doses']
+	#raw input takes in val from prompt
+	videoGames = float(input(\
+		"percentage of time spent playing video games?"))
+	flierMiles = float(input("frequent flier miles earned per year?"))
+	iceCream = float(input("liters of ice cream consumed per year?"))
+
+	datingMatrix,datingLabels = fileToMatrix('datingTestSet.txt')
+	normMatrix, ranges, minVals = autoNorm(datingMatrix)
+
+	personalityArray =array([flierMiles, videoGames, iceCream])
+
+	classifierResult = classifyKNN((personalityArray-\
+		minVals),datingMatrix,datingLabels,3)
+	print("You will like this person in {0}".format(classifierResult))
 
 
 
