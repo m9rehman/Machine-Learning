@@ -1,3 +1,7 @@
+#KNN-der
+### A dating application that makes use of k-Nearest neighbours to determine the perfect match for you.
+
+## Run Instructions
 To run :<br/>
 	$ python3 <br/>
 	$ import kNNDating <br/>
